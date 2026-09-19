@@ -168,8 +168,16 @@ CoverBackground {
     }
 
     function refreshActionLabels() {
-        getItemLabel(settings.coverAction1, function(l) { label1 = l; })
-        getItemLabel(settings.coverAction2, function(l) { label2 = l; })
+         var action1 = cleanSetting(settings.coverAction1)
+         var action2 = cleanSetting(settings.coverAction2)
+         label1 = action1
+         label2 = action2
+         getItemLabel(action1, function(l) {
+             if (cleanSetting(settings.coverAction1) === action1) label1 = l
+         })
+         getItemLabel(action2, function(l) {
+             if (cleanSetting(settings.coverAction2) === action2) label2 = l
+         })
     }
 
     Component.onCompleted: {
